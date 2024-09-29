@@ -1,0 +1,18 @@
+#! /bin/bash
+
+#SBATCH --job-name=test_1
+
+#SBATCH  -p B720-ibe-compute_28_64      # Partition
+#SBATCH -N 10                           # au minimum 5 nœuds
+#SBATCH --exclusive                     # exclusive acces to nodes
+#SBATCH --mem=40GB                      # Quantité mémoire demandée par nœud en Mo (unité obligatoire)
+#SBATCH -o %test1.out                   # Fichier de sortie du JOB
+#SBATCH -e %test1.err                   # Fichier log err
+#SBATCH --mail-type=END                 # Réception d'un mail à la fin du job
+#SBATCH --mail-user=nguessanaubin.sfa@univ-na.ci
+
+module load anaconda/anaconda2
+source activate /SCRATCH/psnchimie/chimie_env/
+
+cd /Desktop/BBB_data
+python data_setup.py 
